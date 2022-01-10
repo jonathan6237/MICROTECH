@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">414222418500-nsklb4osg6hcbs2rkt5rteggtgtd1aod.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">414222418500</string>
+    <string name="google_api_key" translatable="false">AIzaSyAm0UJUZVJEs0A7NENpv4PLIoesYKXpNd0</string>
+    <string name="google_app_id" translatable="false">1:414222418500:android:fd0c86841fb11c61377211</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAm0UJUZVJEs0A7NENpv4PLIoesYKXpNd0</string>
+    <string name="google_storage_bucket" translatable="false">micfi-3d39f.appspot.com</string>
+    <string name="project_id" translatable="false">micfi-3d39f</string>
+</resources>
