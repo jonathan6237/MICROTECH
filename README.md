@@ -1,0 +1,10 @@
+# Micfi
+TP COO
+Le theme du projet:
+CONCEPTION ET REALISATION D'UN SYSTEME DE GESTION DE COMPTE DANS UNE MICROFINANCE.
+
+
+Chacun met son nom et son matricule :
+
+
+--TEYOU GHOMFO MARTIAL  19M2364
