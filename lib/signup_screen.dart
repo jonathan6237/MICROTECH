@@ -24,3 +24,75 @@ const kTextFieldDecoration = InputDecoration(
 bool _saving = false;
 
 
+class RegistrationScreen extends StatefulWidget {
+  @override
+  _RegistrationScreenState createState() => _RegistrationScreenState();
+}
+
+class _RegistrationScreenState extends State<RegistrationScreen> {
+  final _auth = FirebaseAuth.instance;
+  String email='';
+  String password='';
+  bool showSpinner = false;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: LoadingOverlay(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                TextField(
+                    keyboardType: TextInputType.emailAddress,
+                    textAlign: TextAlign.center,
+                    onChanged: (value) {
+                      email = value;
+                      //Do something with the user input.
+                    },
+                    decoration: kTextFieldDecoration.copyWith(
+                        hintText: 'Enter your email')),
+                SizedBox(
+                  height: 8.0,
+                ),
+                TextField(
+                    obscureText: true,
+                    textAlign: TextAlign.center,
+                    onChanged: (value) {
+                      password = value;
+                      //Do something with the user input.
+                    },
+                    decoration: kTextFieldDecoration.copyWith(
+                        hintText: 'Enter your Password')),
+                SizedBox(
+                  height: 24.0,
+                ),
+                TextButton(
+                  child: Text('Sign Up'),
+                  onPressed: () async {
+                    setState(() {
+                    });
+                    try {
+                      final newUser = await _auth.createUserWithEmailAndPassword(
+                          email: email, password: password);
+                      if (newUser != null) {
+                        Navigator.pushNamed(context, 'home_screen');
+                      }
+                    } catch (e) {
+                      print(e);
+                    }
+                    setState(() {
+                      showSpinner = false;
+                    });
+                  },
+                )
+              ],
+            ),
+          ),
+          isLoading: _saving
+      ),
+    );
+  }
+}
