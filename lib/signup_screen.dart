@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:loading_overlay/loading_overlay.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 //code for designing the UI of our text field where the user writes his email id or password
 
@@ -23,7 +24,6 @@ const kTextFieldDecoration = InputDecoration(
 
 bool _saving = false;
 
-
 class RegistrationScreen extends StatefulWidget {
   @override
   _RegistrationScreenState createState() => _RegistrationScreenState();
@@ -31,8 +31,8 @@ class RegistrationScreen extends StatefulWidget {
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
   final _auth = FirebaseAuth.instance;
-  String email='';
-  String password='';
+  String email = '';
+  String password = '';
   bool showSpinner = false;
   @override
   Widget build(BuildContext context) {
@@ -72,13 +72,47 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 TextButton(
                   child: Text('Sign Up'),
                   onPressed: () async {
-                    setState(() {
-                    });
+                    setState(() {});
                     try {
-                      final newUser = await _auth.createUserWithEmailAndPassword(
-                          email: email, password: password);
+                      final newUser =
+                          await _auth.createUserWithEmailAndPassword(
+                              email: email, password: password);
+                                var user = newUser.user;
                       if (newUser != null) {
-                        Navigator.pushNamed(context, 'home_screen');
+                        Future<void> newUser() async {
+                          Map<String, Object?> userData = {
+                            'UserName': "",
+                            'Email': email,
+                            'Password': password,
+                            'Role': 1,
+                            'Profile':
+                                "https://www.pexels.com/photo/man-in-black-jacket-771742/",
+                            'CNI': "CE2020ks839",
+                          };
+                          FirebaseFirestore.instance
+                              .collection('Users').doc(user!.uid)
+                              .set(userData)
+                              .catchError((e) {
+                            print(e);
+                          });
+
+                          Map<String, Object?> transData = {
+                            'from': _auth.currentUser!.uid,
+                            'by': _auth.currentUser!.uid,
+                            'amount':1,
+                            'solde': 0000.5,
+                            'type': 1,
+                            'time': DateTime.now()
+                          };
+                          FirebaseFirestore.instance
+                              .collection('Transactions')
+                              .add(transData)
+                              .catchError((e) {
+                            print(e);
+                          });
+                        }
+                        newUser();
+                        // Navigator.pushNamed(context, 'home_screen');
                       }
                     } catch (e) {
                       print(e);
@@ -91,8 +125,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               ],
             ),
           ),
-          isLoading: _saving
-      ),
+          isLoading: _saving),
     );
   }
 }

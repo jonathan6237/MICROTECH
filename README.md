@@ -1,13 +1,16 @@
-# Micfi
-TP COO
-Le theme du projet:
-CONCEPTION ET REALISATION D'UN SYSTEME DE GESTION DE COMPTE DANS UNE MICROFINANCE.
+# micfi
 
+A new Flutter project.
 
-Nom et matricule des membres du groupe :
+## Getting Started
 
--- ABANDA NGAH JAMES  16V2522
--- NDO MELOU ANGEL ROMAN,  17R2127, 01hue
--- NGONGANG ARNOLD BARYL,  21S2790, jonathan6237
--- NGOUZONG NGALEU JAEL CALVIN   21U2523
--- TEYOU GHOMFO MARTIAL,  19M2364, teyoumartialTG
+This project is a starting point for a Flutter application.
+
+A few resources to get you started if this is your first Flutter project:
+
+- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+
+For help getting started with Flutter, view our
+[online documentation](https://flutter.dev/docs), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
